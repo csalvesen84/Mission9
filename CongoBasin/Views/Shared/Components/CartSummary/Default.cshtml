@@ -1,0 +1,19 @@
+﻿@model CongoBasin.Models.Cart
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, CongoBasin
+@using CongoBasin.Models
+@using CongoBasin.Models.ViewModels
+@using CongoBasin.Infrastructure
+<div class="">
+    @if (Model.Items.Count() > 0)
+    {
+        <small class="navbar-text">
+            <b>Your cart:</b>
+            @Model.Items.Sum(x => x.Quantity) item(s)
+            @Model.CalculateTotal().ToString("c")
+        </small>
+    }
+    <a class="btn btn-sm btn-secondary navbar-btn" asp-page="/Buy" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()">
+        <i class="fa fa-shopping-cart"></i>
+    </a>
+</div>
